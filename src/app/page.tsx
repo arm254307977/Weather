@@ -1,6 +1,5 @@
 "use client";
 import sky from "@/app/assets/images/sky.jpg";
-import InputCity from "./components/InputCity";
 import { useEffect, useState } from "react";
 import { DataWeatherState, initialDataWeatherState } from "./type/type";
 import * as functionForecast from "@/app/function/functionHomePage";
