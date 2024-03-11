@@ -18,7 +18,7 @@ const WeatherDetail = ({ data }: Props) => {
       <h1 className="mb-4 text-2xl text-white drop-shadow-md font-bold">
         Air quality
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div className=" bg-white/50 max-h-28 p-4 flex items-center justify-around gap-6 rounded-xl shadow-md">
           <div className="text-lg flex flex-col gap-4">
             <h3 className="text-xl drop-shadow-md font-semibold">PM 2.5</h3>

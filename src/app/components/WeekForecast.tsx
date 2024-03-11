@@ -7,11 +7,11 @@ type Props = {
 
 const WeekForecast = ({ data }: Props) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-col-7 gap-8 w-full px-6 md:px-0">
+    <div className="flex flex-wrap justify-end gap-8 w-full px-6 md:px-0">
       {data.forecast?.forecastday.map((day: any, index: number) => (
         <div
           key={index}
-          className=" bg-white/20 p-2 text-center rounded-lg flex flex-col items-center backdrop-blur-sm "
+          className=" bg-white/20 p-2 text-center rounded-lg flex flex-col items-center backdrop-blur-sm w-[10rem]"
         >
           <p>
             {new Date(day.date).toLocaleString("en-US", { weekday: "short", day: "numeric", month: "short" })}
