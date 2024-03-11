@@ -1,3 +1,3 @@
-export const baseURL: string = "http://api.weatherapi.com";
+export const baseURL: string = "https://api.weatherapi.com";
 
 
