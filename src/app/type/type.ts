@@ -1,3 +1,5 @@
+import sky from "@/app/assets/images/sky.jpg"
+
 export interface DataWeatherState {
   city: string;
   days: string;
@@ -5,6 +7,7 @@ export interface DataWeatherState {
   IsWeatherAlerts: string;
   isLoading: boolean;
   data: any;
+  imageBG: string
 };
 
 export const initialDataWeatherState: DataWeatherState = {
@@ -14,6 +17,7 @@ export const initialDataWeatherState: DataWeatherState = {
   IsWeatherAlerts: "yes",
   isLoading: false,
   data: {},
+  imageBG: sky.src
 };
 
 export interface OptionCountryState {

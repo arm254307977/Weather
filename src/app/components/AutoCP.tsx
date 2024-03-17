@@ -1,8 +1,16 @@
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import { SearchIcon } from "./SearchIcon";
-import * as functionHomPage from "@/app/function/functionHomePage";
+
+// type
 import * as typeValue from "@/app/type/type";
+
+// Framer motion
+import { motion } from "framer-motion";
+
+// Function
+import * as functionFramerMotion from "@/app/function/motion";
+import * as functionHomPage from "@/app/function/functionHomePage";
 
 type Props = {
   setDataState: React.Dispatch<
@@ -18,7 +26,10 @@ const InputCityAutocomplete = ({ setDataState, dataState }: Props) => {
   >(typeValue.initialOptionCountryState);
 
   return (
-    <div className="flex items-center w-full md:w-2/4 order-2 md:order-1">
+    <motion.div
+      {...functionFramerMotion.inputSearchAnimetion}
+      className="flex items-center w-full md:w-2/4 order-2 md:order-1"
+    >
       <Autocomplete
         inputProps={{
           classNames: {
@@ -76,7 +87,7 @@ const InputCityAutocomplete = ({ setDataState, dataState }: Props) => {
           </AutocompleteItem>
         )}
       </Autocomplete>
-    </div>
+    </motion.div>
   );
 };
 

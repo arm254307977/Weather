@@ -1,12 +1,20 @@
 "use client";
 import React from "react";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
+// Framer motion
+import { motion } from "framer-motion";
+
+// Function
+import * as functionFramerMotion from "@/app/function/motion";
 
 type Props = {};
 
 const LoadingPage = (props: Props) => {
   return (
-    <div className="h-screen flex flex-col absolute inset-0 z-10 bg-gray-600/40 items-center justify-center">
+    <motion.div
+      {...functionFramerMotion.changeCountry}
+      className="h-screen flex flex-col absolute inset-0 z-10 bg-gray-600/40 items-center justify-center"
+    >
       <div>
         <Player
           autoplay
@@ -24,7 +32,7 @@ const LoadingPage = (props: Props) => {
           src="https://lottie.host/910c7169-b01f-4750-8312-0ccdb59f7ce4/b0A7Kw9ARH.json"
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -42,7 +42,7 @@ const question = (msg: string) => {
 const successNoRespond = async (msg: string) => {
     const Toast = Swal.mixin({
         toast: true,
-        position: "top-right",
+        position: "top",
         iconColor: "white",
         customClass: {
             popup: "colored-toast",
@@ -60,7 +60,7 @@ const successNoRespond = async (msg: string) => {
 const errorNoRespond = async (msg: any) => {
     const Toast = Swal.mixin({
         toast: true,
-        position: "top-right",
+        position: "top",
         iconColor: "white",
         customClass: {
             popup: "colored-toast",
@@ -78,7 +78,7 @@ const errorNoRespond = async (msg: any) => {
 const warningNoRespond = async (msg: any) => {
     const Toast = Swal.mixin({
         toast: true,
-        position: "top-right",
+        position: "top",
         iconColor: "white",
         customClass: {
             popup: "colored-toast",
