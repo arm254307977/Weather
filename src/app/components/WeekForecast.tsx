@@ -5,7 +5,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 // Function
-import * as functionFramerMotion from "@/app/function/motion";
+// import * as functionFramerMotion from "@/app/function/motion";
 
 type Props = {
   data: any;
