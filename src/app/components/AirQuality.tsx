@@ -11,6 +11,9 @@ import dust from "@/app/assets/json/dust.json";
 // Framer motion
 import { AnimatePresence, motion } from "framer-motion";
 
+// Function
+import * as functionFramerMotion from "@/app/function/motion";
+
 type Props = {
   data: any;
 };
@@ -18,16 +21,17 @@ type Props = {
 const WeatherDetail = ({ data }: Props) => {
   return (
     <div className="pb-10">
-      <h1 className="mb-4 text-2xl text-white drop-shadow-md font-bold">
+      <motion.h1
+        {...functionFramerMotion.headerAirAnimetion}
+        className="mb-4 text-2xl text-center md:text-start text-white drop-shadow-md font-bold"
+      >
         Air quality
-      </h1>
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div className=" bg-white/50 max-h-28 p-4 flex items-center justify-around gap-6 rounded-xl shadow-md">
+      </motion.h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <motion.div
+          {...functionFramerMotion.cardAirLeftAnimation}
+          className=" bg-white/50 max-h-28 p-4 flex items-center justify-around gap-6 rounded-xl shadow-md"
+        >
           <div className="text-lg flex flex-col gap-4">
             <h3 className="text-xl drop-shadow-md font-semibold">PM 2.5</h3>
             <h3>{data.current.air_quality.pm2_5} µg./m3</h3>
@@ -39,8 +43,11 @@ const WeatherDetail = ({ data }: Props) => {
             className="drop-shadow-md w-24"
             src={mask}
           />
-        </div>
-        <div className=" bg-white/50 p-4 max-h-28 flex items-center justify-around gap-6 rounded-xl shadow-md">
+        </motion.div>
+        <motion.div
+          {...functionFramerMotion.cardAirRightAnimation}
+          className=" bg-white/50 p-4 max-h-28 flex items-center justify-around gap-6 rounded-xl shadow-md"
+        >
           <div className="text-lg flex flex-col gap-4">
             <h3 className="text-xl drop-shadow-md font-semibold">PM 10</h3>
             <h3>{data.current.air_quality.pm10} µg/m³</h3>
@@ -52,8 +59,11 @@ const WeatherDetail = ({ data }: Props) => {
             className="drop-shadow-md w-32"
             src={dust}
           />
-        </div>
-        <div className=" bg-white/50 p-4 max-h-28 flex items-center justify-around gap-6 rounded-xl shadow-md">
+        </motion.div>
+        <motion.div
+          {...functionFramerMotion.cardAirLeftAnimation}
+          className=" bg-white/50 p-4 max-h-28 flex items-center justify-around gap-6 rounded-xl shadow-md"
+        >
           <div className="text-lg flex flex-col gap-4">
             <h3 className="text-xl drop-shadow-md font-semibold">CO gas</h3>
             <h3>{data.current.air_quality.co} µg/m³</h3>
@@ -65,8 +75,11 @@ const WeatherDetail = ({ data }: Props) => {
             className="drop-shadow-md w-28"
             src={industry}
           />
-        </div>
-        <div className=" bg-white/50 p-4 max-h-28 flex items-center justify-around gap-6 rounded-xl shadow-md">
+        </motion.div>
+        <motion.div
+          {...functionFramerMotion.cardAirRightAnimation}
+          className=" bg-white/50 p-4 max-h-28 flex items-center justify-around gap-6 rounded-xl shadow-md"
+        >
           <div className="text-lg flex flex-col gap-4">
             <h3 className="text-xl drop-shadow-md font-semibold">NO2 gas</h3>
             <h3>{data.current.air_quality.no2} µg/m³</h3>
@@ -78,8 +91,11 @@ const WeatherDetail = ({ data }: Props) => {
             className="drop-shadow-md w-32"
             src={car}
           />
-        </div>
-        <div className=" bg-white/50 p-4 max-h-28 flex items-center justify-around gap-6 rounded-xl shadow-md">
+        </motion.div>
+        <motion.div
+          {...functionFramerMotion.cardAirLeftAnimation}
+          className=" bg-white/50 p-4 max-h-28 flex items-center justify-around gap-6 rounded-xl shadow-md"
+        >
           <div className="text-lg flex flex-col gap-4">
             <h3 className="text-xl drop-shadow-md font-semibold">O3 gas</h3>
             <h3>{data.current.air_quality.o3} µg/m³</h3>
@@ -91,8 +107,11 @@ const WeatherDetail = ({ data }: Props) => {
             className="drop-shadow-md w-32"
             src={earth}
           />
-        </div>
-        <div className=" bg-white/50 p-4 max-h-28 flex items-center justify-around gap-6 rounded-xl shadow-md">
+        </motion.div>
+        <motion.div
+          {...functionFramerMotion.cardAirRightAnimation}
+          className=" bg-white/50 p-4 max-h-28 flex items-center justify-around gap-6 rounded-xl shadow-md"
+        >
           <div className="text-lg flex flex-col gap-4">
             <h3 className="text-xl drop-shadow-md font-semibold">SO2 gas</h3>
             <h3>{data.current.air_quality.so2} µg/m³</h3>
@@ -103,8 +122,8 @@ const WeatherDetail = ({ data }: Props) => {
             className="drop-shadow-md w-32"
             src={industrial}
           />
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 };

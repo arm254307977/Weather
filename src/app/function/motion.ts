@@ -108,12 +108,67 @@ export const currentText2Animetion = {
     }
 };
 
-export const weekForcastAnimation = {
+// export const weekForcastAnimation = {
+//     initial: { opacity: 0, scale: 0 },
+//     animate: { opacity: 1, scale: 1 },
+// };
+
+// export const weekForcastTransition = (index: number): { duration: number, delay: number } => ({
+//     duration: 0.45,
+//     delay: index * 0.1,
+// });
+
+export const cardAnimation = {
     initial: { opacity: 0, scale: 0 },
-    animate: { opacity: 1, scale: 1 },
+    whileInView: { opacity: 1, scale: 1 },
+    transition: { duration: 0.8 },
+    viewport: { once: true }
 };
 
-export const weekForcastTransition = (index: number): { duration: number, delay: number } => ({
-    duration: 0.45,
-    delay: index * 0.1,
-});
+export const headerAirAnimetion = {
+    initial: {
+        opacity: 0,
+        y: 30,
+    },
+    whileInView: {
+        opacity: 1,
+        y: 0,
+    },
+    transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+    },
+    viewport: { once: true }
+}
+
+export const cardAirRightAnimation = {
+    initial: {
+        opacity: 0,
+        x: 100,
+    },
+    whileInView: {
+        opacity: 1,
+        x: 0,
+    },
+    transition: {
+        duration: 1,
+        ease: 'easeOut',
+    },
+    viewport: { once: true }
+};
+
+export const cardAirLeftAnimation = {
+    initial: {
+        opacity: 0,
+        x: -100,
+    },
+    whileInView: {
+        opacity: 1,
+        x: 0,
+    },
+    transition: {
+        duration: 1,
+        ease: 'easeOut',
+    },
+    viewport: { once: true }
+};
