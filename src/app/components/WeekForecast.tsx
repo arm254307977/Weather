@@ -2,7 +2,7 @@ import { Image } from "@nextui-org/react";
 import React from "react";
 
 // Framer motion
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Function
 import * as functionFramerMotion from "@/app/function/motion";
