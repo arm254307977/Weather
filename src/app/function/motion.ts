@@ -144,7 +144,7 @@ export const headerAirAnimetion = {
 export const cardAirRightAnimation = {
     initial: {
         opacity: 0,
-        x: 100,
+        x: 20,
     },
     whileInView: {
         opacity: 1,
@@ -160,7 +160,7 @@ export const cardAirRightAnimation = {
 export const cardAirLeftAnimation = {
     initial: {
         opacity: 0,
-        x: -100,
+        x: -20,
     },
     whileInView: {
         opacity: 1,
