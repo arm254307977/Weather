@@ -66,7 +66,7 @@ export default function Home() {
           ) : (
             dataState.data.current && (
               <motion.div {...functionFramerMotion.changeCountry}>
-                <div className="flex flex-col items-center md:items-start md:flex-row py-12">
+                <div className="flex flex-col items-center md:items-start md:flex-row py-12 md:gap-12">
                   <Current data={dataState} />
                   <WeekForecast data={dataState.data} />
                 </div>

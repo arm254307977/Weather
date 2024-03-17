@@ -13,7 +13,7 @@ type Props = {
 
 const WeekForecast = ({ data }: Props) => {
   return (
-    <div className="flex flex-wrap justify-center md:justify-start gap-8 w-full px-6 md:px-0">
+    <div className="flex flex-wrap justify-center md:justify-start gap-6 md:gap-4 lg:gap-8 w-full px-6 md:px-0">
       {data.forecast?.forecastday.map((day: any, index: number) => (
         <motion.div
           {...functionFramerMotion.cardAnimation}

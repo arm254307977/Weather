@@ -57,12 +57,12 @@ const Current = ({ data }: Props) => {
           {dataWeather.current.temp_c.toFixed()}
           <span className="text-3xl">°C</span>
         </motion.p>
-        <motion.span
+        <motion.p
           {...functionFramerMotion.currentText1Animetion}
           className="text-white drop-shadow-md"
         >
           {dataWeather.current.condition.text}
-        </motion.span>
+        </motion.p>
         <motion.div
           {...functionFramerMotion.currentText2Animetion}
           className="flex items-center gap-2 shadow-md mt-2 bg-white py-2 px-4 rounded-lg text-gray-600"

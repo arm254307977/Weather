@@ -48,7 +48,6 @@ export const getDataForecast = async (
             ...old,
             isLoading: false,
             data: dataState.data,
-            city: "",
             imageBG: dataState.imageBG
         }));
         await alert.successNoRespond("Data loaded successfully.");
