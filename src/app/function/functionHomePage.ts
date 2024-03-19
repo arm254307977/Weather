@@ -50,7 +50,7 @@ export const getDataForecast = async (
             data: dataState.data,
             imageBG: dataState.imageBG
         }));
-        await alert.successNoRespond("Data loaded successfully.");
+        // await alert.successNoRespond("Data loaded successfully.");
     } else {
         setDataState((old: typeValue.DataWeatherState) => ({
             ...old,
