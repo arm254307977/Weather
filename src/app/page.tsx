@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { NextUIProvider } from "@nextui-org/react";
 
 // Framer motion
-import { motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 // type
 import { DataWeatherState, initialDataWeatherState } from "./type/type";
@@ -51,9 +51,10 @@ export default function Home() {
           />
           <motion.h1
             {...functionFramerMotion.headerAnimetion}
-            className="mb-8 md:mb-0 text-white flex text-xl font-bold py-2 px-4 order-1"
+            className="mb-8 md:mb-0 text-white flex flex-col md:flex-row md:gap-4 font-bold py-2 px-4 order-1"
           >
-            Weather App <span className="text-xs self-end">by apisit</span>
+            <p className="text-xl text-center">Weather App</p>
+            <p className="text-xs text-center self-center">by apisit</p>
           </motion.h1>
         </motion.div>
 
