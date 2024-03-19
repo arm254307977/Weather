@@ -51,9 +51,9 @@ export default function Home() {
           />
           <motion.h1
             {...functionFramerMotion.headerAnimetion}
-            className="mb-8 md:mb-0 text-white text-xl font-bold py-2 px-4 order-1"
+            className="mb-8 md:mb-0 text-white flex text-xl font-bold py-2 px-4 order-1"
           >
-            Weather App ;)
+            Weather App <span className="text-xs self-end">by apisit</span>
           </motion.h1>
         </motion.div>
 
