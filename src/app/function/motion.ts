@@ -20,7 +20,7 @@ export const navAnimetion = {
     transition: {
         delay: 0.3,
         duration: 0.3,
-        ease: 'easeOut',
+        ease: 'easeIn',
     }
 }
 
@@ -36,7 +36,7 @@ export const headerAnimetion = {
     transition: {
         delay: 0.6,
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeIn',
     }
 }
 
@@ -52,7 +52,7 @@ export const inputSearchAnimetion = {
     transition: {
         delay: 0.6,
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeIn',
     }
 }
 
@@ -71,7 +71,7 @@ export const changeCountry = {
         transition: {
             delay: 0.6,
             duration: 0.5,
-            ease: 'easeOut',
+            ease: 'easeIn',
         },
     },
 }
@@ -88,7 +88,7 @@ export const currentText1Animetion = {
     transition: {
         delay: 0.3,
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeIn',
     }
 }
 
@@ -104,7 +104,7 @@ export const currentText2Animetion = {
     transition: {
         delay: 0.6,
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeIn',
     }
 };
 
@@ -121,7 +121,7 @@ export const currentText2Animetion = {
 export const cardAnimation = {
     initial: { opacity: 0, scale: 0 },
     whileInView: { opacity: 1, scale: 1 },
-    transition: { duration: 0.8 },
+    transition: { duration: 0.8,  ease: 'easeIn' },
     viewport: { once: true }
 };
 
@@ -136,7 +136,7 @@ export const headerAirAnimetion = {
     },
     transition: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeIn',
     },
     viewport: { once: true }
 }
@@ -151,8 +151,8 @@ export const cardAirRightAnimation = {
         x: 0,
     },
     transition: {
-        duration: 1,
-        ease: 'easeOut',
+        duration: 0.5,
+        ease: 'easeIn',
     },
     viewport: { once: true }
 };
@@ -168,7 +168,7 @@ export const cardAirLeftAnimation = {
     },
     transition: {
         duration: 1,
-        ease: 'easeOut',
+        ease: 'easeIn',
     },
-    viewport: { once: true }
+    viewport: { once: true },
 };
