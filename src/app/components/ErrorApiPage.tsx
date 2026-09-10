@@ -1,38 +1,30 @@
 "use client";
 import React from "react";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
-import iconNotFoundPage from "@/app/assets/json/iconPageNotFound.json";
 
-// Framer motion
-import { motion } from "framer-motion";
+type Props = {
+  onRetry?: () => void;
+};
 
-// Function
-import * as functionFramerMotion from "@/app/function/motion";
-
-type Props = {};
-
-const ErrorApiPage = (props: Props) => {
+const ErrorApiPage = ({ onRetry }: Props) => {
   return (
-    <motion.div
-      {...functionFramerMotion.changeCountry}
-      className="my-8 md:my-20 mx-6 flex flex-col justify-center items-center"
-    >
-      <header className="drop-shadow-md max-w-2xl text-center mb-5">
-        <h1 className="text-md md:text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-          No matching locations found
-        </h1>
-        <p className="mt-2 text-xs md:text-sm font-semibold text-gray-600">
-          Please enter the correct location name.
-        </p>
-      </header>
-      <Player
-        autoplay
-        loop
-        speed={2.5}
-        className="drop-shadow-md max-w-52"
-        src={iconNotFoundPage}
-      />
-    </motion.div>
+    <div className="bg-[#0B1220] border border-[#24334A] rounded-xl p-8 flex flex-col justify-center items-center gap-3 text-center min-h-[300px]">
+      <div className="w-12 h-12 rounded-full bg-[#2A1A16] border border-[#5C332A] flex items-center justify-center text-[#F2705B] text-[22px] font-semibold">
+        !
+      </div>
+      <span className="text-[19px] font-semibold">เชื่อมต่อข้อมูลไม่สำเร็จ</span>
+      <span className="text-[13px] text-[#8AA0BE] max-w-[380px] leading-relaxed">
+        ไม่สามารถดึงข้อมูลจากบริการพยากรณ์อากาศได้ในขณะนี้ ลองใหม่อีกครั้ง
+        หรือตรวจสอบการเชื่อมต่ออินเทอร์เน็ต
+      </span>
+      {onRetry && (
+        <button
+          onClick={onRetry}
+          className="mt-[6px] text-[13px] font-semibold bg-[#5AD1C8] text-[#062B29] rounded-full px-[22px] py-[10px]"
+        >
+          ลองใหม่
+        </button>
+      )}
+    </div>
   );
 };
 

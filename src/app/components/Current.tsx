@@ -1,86 +1,72 @@
+"use client";
 import React from "react";
 import * as currenntDateFunction from "@/app/service/currentDate";
-import Image from "next/image";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
-import locationPin from "@/app/assets/json/locationPin.json";
-
-// Framer motion
-import { motion, useScroll, useTransform } from "framer-motion";
-
-// Function
-import * as functionFramerMotion from "@/app/function/motion";
 
 type Props = {
   data: any;
+  unit: "C" | "F";
 };
 
-const Current = ({ data }: Props) => {
+const Current = ({ data, unit }: Props) => {
+  const w = data?.data;
+  if (!w?.current) return null;
 
-  const currentDate = currenntDateFunction.getCurrentDate();
-  const dataWeather = data.data ? data.data : null;
-  const weatherIcon = data.data.current
-    ? data.data.current.condition.icon
-    : null;
-  const [, time] = data.data.location?.localtime.split(" ");
+  const current = w.current;
+  const today = w.forecast?.forecastday?.[0];
+  const astro = today?.astro;
+  const t = (c: number, f: number) => Math.round(unit === "C" ? c : f);
+  const [, time] = (w.location?.localtime || " ").split(" ");
 
   return (
-    <motion.div
-      className="flex flex-col mb-12 md:mb-0 items-start gap-2 md:w-1/2"
-    >
-      <motion.div
-        {...functionFramerMotion.currentText1Animetion}
-        className="flex items-center gap-2"
-      >
-        <div>
-          <div className="flex items-end justify-between">
-            <h1 className="text-3xl text-white drop-shadow-md">Today</h1>
-            <span className="text-md text-white drop-shadow-md">{time}</span>
-          </div>
-          <p className="text-white text-lg">{currentDate}</p>
-        </div>
-        {weatherIcon && (
-          <div>
-            <Image
-              src={`https:${weatherIcon}`}
-              alt={dataWeather.current.condition.text}
-              width={50}
-              height={50}
-            />
-          </div>
-        )}
-      </motion.div>
-      <div>
-        <motion.p
-          {...functionFramerMotion.currentText1Animetion}
-          className="text-5xl text-white drop-shadow-md"
-        >
-          {dataWeather.current.temp_c.toFixed()}
-          <span className="text-3xl">°C</span>
-        </motion.p>
-        <motion.p
-          {...functionFramerMotion.currentText1Animetion}
-          className="text-white drop-shadow-md"
-        >
-          {dataWeather.current.condition.text}
-        </motion.p>
-        <motion.div
-          {...functionFramerMotion.currentText2Animetion}
-          className="flex items-center gap-2 shadow-md mt-2 bg-white py-2 px-4 rounded-lg text-gray-600"
-        >
-          <span className=" mt-[-0.5rem] ml-[-0.5rem]">
-            <Player
-              autoplay
-              loop
-              className="drop-shadow-md max-w-52 w-8"
-              src={locationPin}
-            />
+    <div className="bg-gradient-to-b from-[#18304A] to-[#141F31] border border-[#24334A] rounded-[14px] p-6 md:p-[26px] flex flex-col gap-5">
+      <div className="flex justify-between items-start gap-4">
+        <div className="flex flex-col gap-[2px] min-w-0">
+          <span className="text-[19px] font-semibold truncate">{w.location.name}</span>
+          <span className="text-[13px] text-[#8AA0BE]">
+            {w.location.country} · {currenntDateFunction.getCurrentDate()} {time}
           </span>
-          <p>
-            {dataWeather.location.name}, {dataWeather.location.country}
-          </p>
-        </motion.div>
+        </div>
+        <span className="text-[12px] px-[10px] py-[5px] rounded-full bg-[#1E3550] text-[#9FC6F0] shrink-0">
+          ตอนนี้
+        </span>
       </div>
-    </motion.div>
+
+      <div className="flex items-end gap-5 flex-wrap">
+        <div className="text-[84px] md:text-[104px] leading-[0.86] font-light tracking-tight">
+          {t(current.temp_c, current.temp_f)}
+          <span className="text-[40px] font-normal text-[#9FB4CE]">°</span>
+        </div>
+        <div className="flex flex-col gap-[6px] pb-[10px]">
+          <span className="text-[16px]">{current.condition.text}</span>
+          <span className="text-[14px] text-[#8AA0BE]">
+            รู้สึกเหมือน {t(current.feelslike_c, current.feelslike_f)}°
+          </span>
+          {today && (
+            <span className="text-[14px] text-[#8AA0BE]">
+              สูงสุด {t(today.day.maxtemp_c, today.day.maxtemp_f)}° · ต่ำสุด{" "}
+              {t(today.day.mintemp_c, today.day.mintemp_f)}°
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="flex gap-[10px] flex-wrap">
+        <div className="flex-1 min-w-[110px] bg-[#101B2B] rounded-[10px] px-[14px] py-3 flex flex-col gap-1">
+          <span className="text-[11px] text-[#7D93B2]">พระอาทิตย์ขึ้น</span>
+          <span className="text-[17px] font-semibold">{astro?.sunrise || "–"}</span>
+        </div>
+        <div className="flex-1 min-w-[110px] bg-[#101B2B] rounded-[10px] px-[14px] py-3 flex flex-col gap-1">
+          <span className="text-[11px] text-[#7D93B2]">พระอาทิตย์ตก</span>
+          <span className="text-[17px] font-semibold">{astro?.sunset || "–"}</span>
+        </div>
+        <div className="flex-1 min-w-[110px] bg-[#101B2B] rounded-[10px] px-[14px] py-3 flex flex-col gap-1">
+          <span className="text-[11px] text-[#7D93B2]">โอกาสฝน</span>
+          <span className="text-[17px] font-semibold">
+            {today?.day?.daily_chance_of_rain ?? 0}%
+          </span>
+        </div>
+      </div>
+    </div>
   );
 };
 

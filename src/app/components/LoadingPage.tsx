@@ -1,38 +1,21 @@
 "use client";
 import React from "react";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
-// Framer motion
-import { motion } from "framer-motion";
 
-// Function
-import * as functionFramerMotion from "@/app/function/motion";
-
-type Props = {};
-
-const LoadingPage = (props: Props) => {
+const LoadingPage = () => {
   return (
-    <motion.div
-      {...functionFramerMotion.changeCountry}
-      className="h-screen flex flex-col absolute inset-0 z-10 bg-gray-600/40 items-center justify-center"
-    >
-      <div>
-        <Player
-          autoplay
-          loop
-          speed={2.5}
-          className="opacity-60 w-64 drop-shadow-md"
-          src="https://lottie.host/7e2ffe30-3c25-45f7-8914-4e9fe54869fb/lpQWHZTrAY.json"
-        />
+    <div className="flex flex-col gap-5 animate-pulse">
+      <div className="flex flex-col gap-[10px]">
+        <span className="block w-[180px] h-4 rounded-md bg-[#1A2739]" />
+        <span className="block w-[120px] h-14 rounded-[10px] bg-[#1A2739]" />
       </div>
-      <div className="mt-[-1.5rem]">
-        <Player
-          autoplay
-          loop
-          className="opacity-60 w-32 drop-shadow-md"
-          src="https://lottie.host/910c7169-b01f-4750-8312-0ccdb59f7ce4/b0A7Kw9ARH.json"
-        />
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <span key={i} className="block h-[124px] rounded-[10px] bg-[#162335]" />
+        ))}
       </div>
-    </motion.div>
+      <span className="block h-[200px] rounded-[14px] bg-[#141F31]" />
+      <span className="text-[13px] text-[#8AA0BE]">กำลังโหลดข้อมูลอากาศ…</span>
+    </div>
   );
 };
 

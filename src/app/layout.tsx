@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans_Thai } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const plexThai = IBM_Plex_Sans_Thai({
+  subsets: ["thai", "latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
-  title: "Weather App",
+  title: "อากาศวันนี้ | Weather App",
   description: "create by apisit janpalee",
 };
 
@@ -15,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="th">
+      <body className={plexThai.className}>{children}</body>
     </html>
   );
 }
