@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 import * as currenntDateFunction from "@/app/service/currentDate";
 import { thaiCountryName, thaiWeatherText } from "@/app/function/thaiText";
 
@@ -19,7 +20,12 @@ const Current = ({ data, unit }: Props) => {
   const [, time] = (w.location?.localtime || " ").split(" ");
 
   return (
-    <div className="bg-gradient-to-b from-[#18304A] to-[#141F31] border border-[#24334A] rounded-[14px] p-6 md:p-[26px] flex flex-col gap-5">
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.28, ease: "easeOut" }}
+      className="bg-gradient-to-b from-[#18304A] to-[#141F31] border border-[#24334A] rounded-[14px] p-6 md:p-[26px] flex flex-col gap-5"
+    >
       <div className="flex justify-between items-start gap-4">
         <div className="flex flex-col gap-[2px] min-w-0">
           <span className="text-[19px] font-semibold truncate">{w.location.name}</span>
@@ -67,7 +73,7 @@ const Current = ({ data, unit }: Props) => {
           </span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

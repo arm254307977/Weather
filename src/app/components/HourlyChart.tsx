@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 
 type Props = {
   data: any;
@@ -28,7 +29,12 @@ const HourlyChart = ({ data, unit }: Props) => {
   const points = list.map((h: any, i: number) => `${x(i)},${y(temps[i])}`).join(" ");
 
   return (
-    <div className="bg-[#141F31] border border-[#24334A] rounded-[14px] px-5 py-5 md:px-6 flex flex-col gap-[14px]">
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.28, delay: 0.12, ease: "easeOut" }}
+      className="bg-[#141F31] border border-[#24334A] rounded-[14px] px-5 py-5 md:px-6 flex flex-col gap-[14px]"
+    >
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-1">
         <span className="text-[15px] font-semibold">อุณหภูมิรายชั่วโมง</span>
         <span className="text-[12px] text-[#8AA0BE]">เส้นทึบ = อุณหภูมิ · แท่ง = โอกาสฝน</span>
@@ -70,7 +76,7 @@ const HourlyChart = ({ data, unit }: Props) => {
           </g>
         </svg>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

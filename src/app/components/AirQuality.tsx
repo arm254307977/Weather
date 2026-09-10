@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 import { aqiFromPm25, aqiLevel, aqiAdvice } from "@/app/function/aqi";
 
 type Props = {
@@ -25,7 +26,12 @@ const WeatherDetail = ({ data }: Props) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="bg-gradient-to-b from-[#2F2716] to-[#141F31] border border-[#4A3A1C] rounded-[14px] p-5 md:p-6 flex flex-col gap-[10px]">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.28, ease: "easeOut" }}
+        className="bg-gradient-to-b from-[#2F2716] to-[#141F31] border border-[#4A3A1C] rounded-[14px] p-5 md:p-6 flex flex-col gap-[10px]"
+      >
         <span className="text-[12px] text-[#D8C79A]">
           ดัชนีคุณภาพอากาศ · {data.location?.name}
         </span>
@@ -42,17 +48,20 @@ const WeatherDetail = ({ data }: Props) => {
           />
         </span>
         <span className="text-[13px] text-[#C6D5E8] leading-relaxed">{aqiAdvice(aqi)}</span>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-[10px] md:gap-[14px]">
-        {POLLUTANTS.map((p) => {
+        {POLLUTANTS.map((p, index) => {
           const value = air[p.key];
           if (value === undefined) return null;
           const pct = Math.min(100, (value / p.max) * 100);
           const color = pct > 60 ? "#F2705B" : pct > 35 ? "#F2B54B" : "#5AD1C8";
           return (
-            <div
+            <motion.div
               key={p.key}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.24, delay: 0.05 + index * 0.05, ease: "easeOut" }}
               className="bg-[#141F31] border border-[#24334A] rounded-[11px] p-[14px] flex flex-col gap-2"
             >
               <span className="text-[12px] text-[#8AA0BE]">{p.label}</span>
@@ -66,7 +75,7 @@ const WeatherDetail = ({ data }: Props) => {
                   style={{ width: `${pct}%`, background: color }}
                 />
               </span>
-            </div>
+            </motion.div>
           );
         })}
       </div>

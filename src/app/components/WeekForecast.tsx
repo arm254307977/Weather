@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 
 type Props = {
   data: any;
@@ -16,8 +17,11 @@ const WeekForecast = ({ data, unit }: Props) => {
         const d = new Date(day.date);
         const isToday = index === 0;
         return (
-          <div
+          <motion.div
             key={index}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.24, delay: index * 0.05, ease: "easeOut" }}
             className={`rounded-xl p-[14px] flex flex-col gap-2 items-center border ${
               isToday ? "bg-[#141F31] border-[#24334A]" : "bg-[#101B2B] border-[#1D2A3D]"
             }`}
@@ -37,7 +41,7 @@ const WeekForecast = ({ data, unit }: Props) => {
             <span className="text-[12px] text-[#9FC6F0]">
               ฝน {day.day.daily_chance_of_rain ?? 0}%
             </span>
-          </div>
+          </motion.div>
         );
       })}
     </div>

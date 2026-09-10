@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 
 type Props = {
   cities: { name: string; temp: number | null; condition?: string; aqi?: number | null }[];
@@ -10,9 +11,14 @@ type Props = {
 const SavedCities = ({ cities, onSelectCity, activeCity }: Props) => {
   return (
     <div className="flex flex-col gap-2">
-      {cities.map((c) => (
-        <button
+      {cities.map((c, index) => (
+        <motion.button
           key={c.name}
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.99 }}
+          transition={{ duration: 0.2, delay: index * 0.04, ease: "easeOut" }}
           onClick={() => onSelectCity(c.name)}
           className={`flex justify-between items-center text-left p-4 rounded-[11px] border transition-colors ${
             c.name === activeCity
@@ -30,7 +36,7 @@ const SavedCities = ({ cities, onSelectCity, activeCity }: Props) => {
           <span className="text-[20px] font-medium shrink-0">
             {c.temp !== null ? `${Math.round(c.temp)}°` : "–"}
           </span>
-        </button>
+        </motion.button>
       ))}
     </div>
   );

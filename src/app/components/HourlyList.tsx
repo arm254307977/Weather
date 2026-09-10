@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 import { thaiWeatherText } from "@/app/function/thaiText";
 
 type Props = {
@@ -20,8 +21,11 @@ const HourlyList = ({ data, unit }: Props) => {
         const isNow = hour === nowHour;
         const rain = h.chance_of_rain || 0;
         return (
-          <div
+          <motion.div
             key={i}
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.18, delay: Math.min(i, 8) * 0.03, ease: "easeOut" }}
             className={`flex items-center gap-3 md:gap-[14px] rounded-[11px] px-[14px] py-[13px] ${
               isNow ? "bg-[#17253A]" : "bg-[#101B2B]"
             }`}
@@ -41,7 +45,7 @@ const HourlyList = ({ data, unit }: Props) => {
             <span className="text-[16px] font-medium w-[46px] text-right shrink-0">
               {Math.round(unit === "C" ? h.temp_c : h.temp_f)}°
             </span>
-          </div>
+          </motion.div>
         );
       })}
     </div>

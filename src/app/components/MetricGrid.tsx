@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 import { aqiFromPm25, aqiLevel, uvLevel } from "@/app/function/aqi";
 
 type Props = {
@@ -7,10 +8,15 @@ type Props = {
   unit: "C" | "F";
 };
 
-const Card = ({ children }: { children: React.ReactNode }) => (
-  <div className="bg-[#141F31] border border-[#24334A] rounded-xl p-[18px] flex flex-col justify-between gap-3 min-h-[124px]">
+const Card = ({ children, index }: { children: React.ReactNode; index: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.24, delay: index * 0.05, ease: "easeOut" }}
+    className="bg-[#141F31] border border-[#24334A] rounded-xl p-[18px] flex flex-col justify-between gap-3 min-h-[124px]"
+  >
     {children}
-  </div>
+  </motion.div>
 );
 
 const MetricGrid = ({ data, unit }: Props) => {
@@ -27,7 +33,7 @@ const MetricGrid = ({ data, unit }: Props) => {
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-3 gap-[14px]">
-      <Card>
+      <Card index={0}>
         <span className="text-[12px] text-[#8AA0BE]">รู้สึกเหมือน</span>
         <span className="text-[28px] md:text-[32px] font-medium">{feels}°</span>
         <span className="text-[12px] text-[#F2B54B]">
@@ -35,7 +41,7 @@ const MetricGrid = ({ data, unit }: Props) => {
         </span>
       </Card>
 
-      <Card>
+      <Card index={1}>
         <span className="text-[12px] text-[#8AA0BE]">ความชื้น</span>
         <span className="text-[28px] md:text-[32px] font-medium">{current.humidity}%</span>
         <span className="block h-[5px] rounded-full bg-[#22334A] overflow-hidden">
@@ -43,7 +49,7 @@ const MetricGrid = ({ data, unit }: Props) => {
         </span>
       </Card>
 
-      <Card>
+      <Card index={2}>
         <span className="text-[12px] text-[#8AA0BE]">ลม</span>
         <span className="text-[28px] md:text-[32px] font-medium">
           {Math.round(current.wind_kph)}
@@ -52,7 +58,7 @@ const MetricGrid = ({ data, unit }: Props) => {
         <span className="text-[12px] text-[#8AA0BE]">ทิศ {current.wind_dir}</span>
       </Card>
 
-      <Card>
+      <Card index={3}>
         <span className="text-[12px] text-[#8AA0BE]">ดัชนี UV</span>
         <span className="text-[28px] md:text-[32px] font-medium">{current.uv}</span>
         <span className="text-[12px] font-semibold" style={{ color: uv.color }}>
@@ -61,7 +67,7 @@ const MetricGrid = ({ data, unit }: Props) => {
       </Card>
 
       {aqi !== null && aqiInfo && (
-        <Card>
+        <Card index={4}>
           <span className="text-[12px] text-[#8AA0BE]">คุณภาพอากาศ (AQI)</span>
           <span className="text-[28px] md:text-[32px] font-medium">{aqi}</span>
           <span className="text-[12px] font-semibold" style={{ color: aqiInfo.color }}>
@@ -71,7 +77,7 @@ const MetricGrid = ({ data, unit }: Props) => {
       )}
 
       {pm25 !== undefined && (
-        <Card>
+        <Card index={5}>
           <span className="text-[12px] text-[#8AA0BE]">PM 2.5</span>
           <span className="text-[28px] md:text-[32px] font-medium">
             {pm25.toFixed(1)}
