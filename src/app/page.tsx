@@ -8,6 +8,7 @@ import { DataWeatherState, initialDataWeatherState } from "./type/type";
 // Function
 import * as functionForecast from "@/app/function/functionHomePage";
 import { aqiFromPm25 } from "@/app/function/aqi";
+import { thaiWeatherText } from "@/app/function/thaiText";
 import { DEFAULT_SAVED_CITIES, NAV_ITEMS, ViewKey } from "@/app/constant/nav";
 
 // Component
@@ -66,7 +67,7 @@ export default function Home() {
     const entry: SavedCity = {
       name,
       temp: weather.current.temp_c,
-      condition: weather.current.condition.text,
+      condition: thaiWeatherText(weather.current.condition.code, weather.current.condition.text),
       aqi: weather.current.air_quality ? aqiFromPm25(weather.current.air_quality.pm2_5) : null,
     };
     setSavedCities((prev) => {

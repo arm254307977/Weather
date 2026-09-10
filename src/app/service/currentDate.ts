@@ -1,6 +1,6 @@
 export const getCurrentDate = () => {
     const currentDate = new Date().toLocaleDateString(
-        "en-US", {
+        "th-TH", {
             weekday: "long",
             year: "numeric",
             month: "long",

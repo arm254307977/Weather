@@ -73,23 +73,30 @@ export const InputCountry = async (
         city: value,
     }));
     if (value === "") return;
-    const queryString = `key=${process.env.NEXT_PUBLIC_API_KEY}&q=${value}`;
-    try {
-        const response: any = await serviceSearchCountry.searchCountry(queryString);
-        if (response.status === 200) {
-            if (response.data.length !== 0) {
-                const data = await response.data;
-                setOptionCountry(data);
-                return;
-            }
+    const options = await getCountryOptions(value);
+    setOptionCountry(options);
+};
 
-        } else {
-            return;
+export const getCountryOptions = async (value: string): Promise<typeValue.OptionCountryState[]> => {
+    try {
+        const response: any = await serviceSearchCountry.searchCountry(value);
+        const results = response.data.results ?? [];
+        if (response.status === 200 && results.length > 0) {
+            return results.map((location: any) => ({
+                id: location.id,
+                name: location.name,
+                region: location.admin1 ?? "",
+                country: location.country ?? "",
+                lat: location.latitude,
+                lon: location.longitude,
+                url: "",
+            }));
         }
     } catch (error) {
         console.error("Error fetching data:", error);
     }
 
+    return [];
 };
 
 export const handleSelectOptionCountry = (

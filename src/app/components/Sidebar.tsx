@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { WiDayCloudy } from "react-icons/wi";
 import { NAV_ITEMS, ViewKey } from "@/app/constant/nav";
 
 type Props = {
@@ -15,8 +16,8 @@ const Sidebar = ({ view, setView, savedCities, onSelectCity, alertCount, updated
   return (
     <aside className="hidden md:flex w-[248px] shrink-0 flex-col gap-7 bg-[#0E1826] border-r border-[#1D2A3D] p-[26px_18px] h-screen sticky top-0">
       <div className="flex items-center gap-[10px] px-2">
-        <div className="w-8 h-8 rounded-[9px] bg-[#5AD1C8] flex items-center justify-center text-[#062B29] font-bold text-[15px]">
-          อ
+        <div className="w-8 h-8 rounded-[9px] bg-[#5AD1C8] flex items-center justify-center text-[#062B29]" aria-label="Weather App">
+          <WiDayCloudy size={25} aria-hidden="true" />
         </div>
         <div className="flex flex-col">
           <span className="text-[15px] font-semibold">อากาศวันนี้</span>
@@ -64,6 +65,16 @@ const Sidebar = ({ view, setView, savedCities, onSelectCity, alertCount, updated
               <span className="font-semibold">{c.temp !== null ? `${Math.round(c.temp)}°` : "–"}</span>
             </button>
           ))}
+        </div>
+      </div>
+
+      <div className="mt-auto border-t border-[#1D2A3D] pt-4 px-3 text-[11px] text-[#68809F] leading-relaxed">
+        <div className="text-[#C6D5E8]">พัฒนาโดย Apisit Janpalee</div>
+        <div>
+          ข้อมูลอากาศโดย <a href="https://www.weatherapi.com/" target="_blank" rel="noreferrer" className="hover:text-[#5AD1C8]">WeatherAPI.com</a>
+        </div>
+        <div>
+          ค้นหาสถานที่โดย <a href="https://open-meteo.com/" target="_blank" rel="noreferrer" className="hover:text-[#5AD1C8]">Open-Meteo</a>
         </div>
       </div>
     </aside>

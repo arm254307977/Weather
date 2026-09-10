@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import * as currenntDateFunction from "@/app/service/currentDate";
+import { thaiCountryName, thaiWeatherText } from "@/app/function/thaiText";
 
 type Props = {
   data: any;
@@ -23,7 +24,7 @@ const Current = ({ data, unit }: Props) => {
         <div className="flex flex-col gap-[2px] min-w-0">
           <span className="text-[19px] font-semibold truncate">{w.location.name}</span>
           <span className="text-[13px] text-[#8AA0BE]">
-            {w.location.country} · {currenntDateFunction.getCurrentDate()} {time}
+            {thaiCountryName(w.location.country)} · {currenntDateFunction.getCurrentDate()} {time}
           </span>
         </div>
         <span className="text-[12px] px-[10px] py-[5px] rounded-full bg-[#1E3550] text-[#9FC6F0] shrink-0">
@@ -37,7 +38,7 @@ const Current = ({ data, unit }: Props) => {
           <span className="text-[40px] font-normal text-[#9FB4CE]">°</span>
         </div>
         <div className="flex flex-col gap-[6px] pb-[10px]">
-          <span className="text-[16px]">{current.condition.text}</span>
+          <span className="text-[16px]">{thaiWeatherText(current.condition.code, current.condition.text)}</span>
           <span className="text-[14px] text-[#8AA0BE]">
             รู้สึกเหมือน {t(current.feelslike_c, current.feelslike_f)}°
           </span>

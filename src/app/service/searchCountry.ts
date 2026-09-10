@@ -1,15 +1,10 @@
-import * as URL from "@/app/constant/http";
-import { API } from "@/app/constant/api";
-import { configGet } from "@/app/constant/network";
 import axios from "axios";
 
-export const searchCountry = async (params: string) => {
+export const searchCountry = async (name: string) => {
     try {
-        const response = await axios(
-            configGet(`${URL.baseURL}/${API.SEARCHCOUNTRY}?${params}`)
-        );
-
-        return response;
+        return await axios.get("https://geocoding-api.open-meteo.com/v1/search", {
+            params: { name, count: 5, language: "th" },
+        });
     } catch (error) {
         console.error("Error in api:", error);
         return error;

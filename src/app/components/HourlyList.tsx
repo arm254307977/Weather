@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { thaiWeatherText } from "@/app/function/thaiText";
 
 type Props = {
   data: any;
@@ -29,7 +30,7 @@ const HourlyList = ({ data, unit }: Props) => {
               {h.time.split(" ")[1]}
             </span>
             <span className="text-[13px] text-[#C6D5E8] flex-1 min-w-0 truncate">
-              {h.condition.text}
+              {thaiWeatherText(h.condition.code, h.condition.text)}
             </span>
             <span
               className="text-[12px] w-[60px] shrink-0 text-right md:text-left"

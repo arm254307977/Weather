@@ -20,10 +20,25 @@ const InputCityAutocomplete = ({ setDataState, dataState }: Props) => {
     typeValue.initialOptionCountryState
   );
 
+  const selectCity = (selectedCity: typeValue.OptionCountryState) => {
+    const nextState = { ...dataState, city: `${selectedCity.lat},${selectedCity.lon}` };
+    setInputValue(selectedCity.name);
+    setDataState(nextState);
+    functionHomPage.getDataForecast(nextState, setDataState);
+  };
+
+  const searchFirstMatch = async () => {
+    const [selectedCity] = await functionHomPage.getCountryOptions(inputValue);
+    if (selectedCity) selectCity(selectedCity);
+  };
+
   return (
     <div className="flex items-center w-full">
       <Autocomplete
-        classNames={{ base: "w-full" }}
+        classNames={{
+          base: "w-full",
+          popoverContent: "bg-[#162335] border border-[#26374E] shadow-lg",
+        }}
         inputProps={{
           classNames: {
             inputWrapper:
@@ -35,17 +50,27 @@ const InputCityAutocomplete = ({ setDataState, dataState }: Props) => {
         onInputChange={(value) =>
           functionHomPage.InputCountry(value, setInputValue, setDataState, setOptionCountry)
         }
-        onKeyDown={(e: any) =>
-          functionHomPage.handleSelectOptionCountry(e, dataState, setDataState)
-        }
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            searchFirstMatch();
+          }
+        }}
+        onSelectionChange={(key) => {
+          const selectedCity = optionCountry.find((item) => item.id === Number(key));
+          if (!selectedCity) return;
+
+          selectCity(selectedCity);
+        }}
         defaultItems={optionCountry}
+        disableAnimation
         allowsCustomValue={true}
         aria-label="ค้นหาเมือง"
         placeholder="ค้นหาเมือง หรือ จังหวัด"
         startContent={
           <div
             className="cursor-pointer"
-            onClick={() => functionHomPage.getDataForecast(dataState, setDataState)}
+            onClick={searchFirstMatch}
           >
             <SearchIcon className="text-[#7D93B2]" strokeWidth={2.4} size={18} />
           </div>
@@ -54,10 +79,14 @@ const InputCityAutocomplete = ({ setDataState, dataState }: Props) => {
         variant="bordered"
       >
         {(item) => (
-          <AutocompleteItem key={item.id} textValue={item.name}>
+          <AutocompleteItem
+            key={item.id}
+            textValue={item.name}
+            className="text-[#E8EEF7] data-[hover=true]:bg-[#17253A]"
+          >
             <div className="flex flex-col">
               <span className="text-small">{item.name}</span>
-              <span className="text-tiny text-default-400">{item.country}</span>
+              <span className="text-tiny text-[#7D93B2]">{item.country}</span>
             </div>
           </AutocompleteItem>
         )}
